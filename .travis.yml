@@ -9,10 +9,10 @@ script:
 after_success:
     - coveralls
 notifications:
-	email: 
-	- qingzhao@g.harvard.edu
-	- jeewonhwang@g.harvard.edu
-	- zelong430@gmail.com
-	- chenchenzhang@g.harvard.edu
-	- tang01@g.harvard.edu
+  email: 
+    - qingzhao@g.harvard.edu
+    - jeewonhwang@g.harvard.edu
+    - zelong430@gmail.com
+    - chenchenzhang@g.harvard.edu
+    - tang01@g.harvard.edu
 	
