@@ -6,7 +6,6 @@ class LazyOperation():
         
     def eval(self):
         temp_list = []
-        print(self.args)
         for arg in self.args[0]:
             if isinstance(arg , LazyOperation):
                 temp_list.append(arg .eval())
