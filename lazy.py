@@ -5,16 +5,15 @@ class LazyOperation():
         self.kwargs = kwargs
         
     def eval(self):
-        if isinstance(self.args[0][0], LazyOperation):
-            temp1 = self.args[0][0].eval()
-        else:
-            temp1 = self.args[0][0]
-        if isinstance(self.args[0][1], LazyOperation):
-            temp2 = self.args[0][1].eval()
-        else:
-            temp2 = self.args[0][1]
-
-        return self.function(temp1, temp2)
+        temp_list = []
+        print(self.args)
+        for arg in self.args[0]:
+            if isinstance(arg , LazyOperation):
+                temp_list.append(arg .eval())
+            else:
+                temp_list.append(arg)
+            
+        return self.function(*temp_list)
 
 def lazy(old_function):
     def wrapper(*args, **kwargs):
