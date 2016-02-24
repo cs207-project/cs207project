@@ -18,6 +18,19 @@ def test_setitem():
     tmpTestSeries[0]=5
     assert tmpTestSeries[0] == 5
 
+def test_equal():
+    tmpTestSeries = TS.TimeSeries(range(0,4),range(1,5))
+    assert tmpTestSeries == testSeries
+
+def test_values():
+    assert np.array_equal(testSeries.values(), range(1,5)) == True
+
+def test_time():
+    assert np.array_equal(testSeries.times(), range(0,4)) == True
+
+
+
+
 @lazy
 def check_length(a,b):
     return len(a)==len(b)
