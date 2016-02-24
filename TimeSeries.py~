@@ -153,3 +153,8 @@ DESCRIPTION
                         new_values.append(left_value + (right_value - left_value)/(right_time - left_time)*(time - left_time))
                         break
         return TimeSeries(times, new_values)
+
+testSeries = TimeSeries(range(0,4),range(1,5))
+print (testSeries.mean())
+print (testSeries.median())
+

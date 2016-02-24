@@ -29,6 +29,20 @@ def test_values():
 def test_time():
     assert np.array_equal(testSeries.times(), range(0,4)) == True
 
+def test_mean_empty():
+    with raises(ValueError):
+         TS.TimeSeries([],[]).mean() 
+
+def test_median_empty():
+    with raises(ValueError):
+         TS.TimeSeries([],[]).median()
+
+def test_mean():
+    assert testSeries.mean() == 2.5
+
+def test_median():
+    assert testSeries.median() == 2.5
+
 @lazy
 def check_length(a,b):
     return len(a)==len(b)

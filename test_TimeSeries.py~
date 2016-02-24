@@ -1,4 +1,5 @@
 from pytest import raises
+import numpy as np
 import TimeSeries as TS
 from lazy import *
 
@@ -27,6 +28,14 @@ def test_values():
 
 def test_time():
     assert np.array_equal(testSeries.times(), range(0,4)) == True
+
+def test_mean_empty():
+    with raises(ValueError):
+         TS.TimeSeries([],[]).mean() 
+
+def test_median_empty():
+    with raises(ValueError):
+         TS.TimeSeries([],[]).median()
 
 @lazy
 def check_length(a,b):
