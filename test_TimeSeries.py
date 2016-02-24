@@ -5,7 +5,7 @@ from lazy import *
 testSeries = TS.TimeSeries(range(0,4),range(1,5))
 
 def test_len():
-    assert len(testSeries) == 5
+    assert len(testSeries) == 4
 
 def test_contains():
     assert (2 in testSeries) == True
