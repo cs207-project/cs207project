@@ -37,6 +37,12 @@ def test_median_empty():
     with raises(ValueError):
          TS.TimeSeries([],[]).median()
 
+def test_mean():
+    assert testSeries.mean() == 2.5
+
+def test_median():
+    assert testSeries.median() == 2.5
+
 @lazy
 def check_length(a,b):
     return len(a)==len(b)
