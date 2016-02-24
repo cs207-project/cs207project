@@ -8,7 +8,7 @@ def test_len();
     assert len(testSeries) == 5
 
 def test_contains():
-    assert 2 in testSeries == True
+    assert (2 in testSeries) == True
 
 def test_len(
 
