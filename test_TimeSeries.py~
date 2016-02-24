@@ -28,9 +28,6 @@ def test_values():
 def test_time():
     assert np.array_equal(testSeries.times(), range(0,4)) == True
 
-
-
-
 @lazy
 def check_length(a,b):
     return len(a)==len(b)

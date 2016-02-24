@@ -1,4 +1,5 @@
 from pytest import raises
+import numpy as np
 import TimeSeries as TS
 from lazy import *
 
