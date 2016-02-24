@@ -10,6 +10,14 @@ def test_len():
 def test_contains():
     assert (2 in testSeries) == True
 
+def test_getitem():
+    assert testSeries[0] == 1
+
+def test_setitem():
+    tmpTestSeries = TS.TimeSeries(range(0,4),range(1,5))
+    tmpTestSeries[0]=5
+    assert tmpTestSeries[0] == 5
+
 @lazy
 def check_length(a,b):
     return len(a)==len(b)
