@@ -1,6 +1,6 @@
 from pytest import raises
 import TimeSeries as TS
-
+from lazy import *
 
 @lazy
 def check_length(a,b):
