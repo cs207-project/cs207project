@@ -87,7 +87,7 @@ DESCRIPTION
         for t in self._times:
             yield t
 
-    def iteritemes(self):
+    def iteritems(self):
         for t,v in zip(self._times,self._values):
             yield (t,v)
             
@@ -121,8 +121,8 @@ DESCRIPTION
     
     def __str__(self):
         className = type(self).__name__
-        if len(self._TimeSeries)>100:
-            return "%s" %('['+(str(self._TimeSeries[:99]))[1:-1]+'...'+']')
+        if len(self)>100:
+            return "%s" %('['+(str(self._values[:99]))[1:-1]+'...'+']')
         else:
             return "%s" %(self._TimeSeries)
         

@@ -52,7 +52,6 @@ def test_interpolation():
     # Boundary conditions
     assert a.interpolate([-100,100]) == TS.TimeSeries([-100,100],[1,3])
 
-
 @lazy
 def check_length(a,b):
     return len(a)==len(b)
