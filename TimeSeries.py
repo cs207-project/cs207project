@@ -51,17 +51,7 @@ DESCRIPTION
      |
      |  __len__(self)
      |      Return len(self.TimeSeries_)
-     Examples
-     --------
-     >>> a = TimeSeries(np.arange(0,100))
-     >>> len(a)
-     100
-     >>> a[2]
-     2
-     >>> a[2]=3
-     >>> a[2]
-     3
-    '''
+     '''
     def __init__(self, times, values):
         if (iter(times) and iter(values)):
             # reorder according to Time step
