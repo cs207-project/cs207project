@@ -53,7 +53,7 @@ def test_itervalue():
 
 
 def test_iteritems():
-    iti=testSeries.itertimes()
+    iti=testSeries.iteritems()
     assert next(iti)==(0,1)
 
 def test_interpolation():
