@@ -51,17 +51,7 @@ DESCRIPTION
      |
      |  __len__(self)
      |      Return len(self.TimeSeries_)
-     Examples
-     --------
-     >>> a = TimeSeries(np.arange(0,100))
-     >>> len(a)
-     100
-     >>> a[2]
-     2
-     >>> a[2]=3
-     >>> a[2]
-     3
-    '''
+     '''
     def __init__(self, times, values):
         if (iter(times) and iter(values)):
             # reorder according to Time step
@@ -165,3 +155,6 @@ DESCRIPTION
                         new_values.append(left_value + (right_value - left_value)/(right_time - left_time)*(time - left_time))
                         break
         return TimeSeries(times, new_values)
+testSeries = TimeSeries(range(0,4),range(1,5))
+ti=testSeries.itertimes()
+assert next(ti)==0

@@ -2,7 +2,7 @@ from pytest import raises
 import numpy as np
 import TimeSeries as TS
 from lazy import *
-
+import collections
 testSeries = TS.TimeSeries(range(0,4),range(1,5))
 
 def test_len():
@@ -43,6 +43,19 @@ def test_mean():
 def test_median():
     assert testSeries.median() == 2.5
 
+def test_itertimes():
+    ti=testSeries.itertimes()
+    assert next(ti)==0
+
+def test_itervalue():
+    vi=testSeries.itervalues()
+    assert next(vi)==1
+
+
+def test_iteritems():
+    iti=testSeries.itertimes()
+    assert next(iti)==(0,1)
+
 def test_interpolation():
     a = TS.TimeSeries([0,5,10], [1,2,3])
     b = TS.TimeSeries([2.5,7.5], [100, -100])
@@ -58,4 +71,3 @@ def check_length(a,b):
 
 def test_check_length():
     thunk = check_length(TS.TimeSeries(range(0,4),range(1,5)).lazy, TS.TimeSeries(range(1,5),range(2,6)))
-

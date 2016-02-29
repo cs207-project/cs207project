@@ -44,14 +44,17 @@ def test_median():
     assert testSeries.median() == 2.5
 
 def test_itertimes():
-    assert isinstance(testSeries.itertimes(),collections.Iterable) == True
+    ti=testSeries.itertimes()
+    assert next(ti)==0
 
 def test_itervalue():
-    assert isinstance(testSeries.itervalues(),collections.Iterable) == True
+    vi=testSeries.itervalues()
+    assert next(vi)==1
+
 
 def test_iteritems():
-    assert isinstance(testSeries.iteritems(),collections.Iterable) == True
-
+    iti=testSeries.itertimes()
+    assert next(iti)==(0,1)
 
 def test_interpolation():
     a = TS.TimeSeries([0,5,10], [1,2,3])
