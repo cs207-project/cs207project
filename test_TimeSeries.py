@@ -2,7 +2,7 @@ from pytest import raises
 import numpy as np
 import TimeSeries as TS
 from lazy import *
-
+import collections
 testSeries = TS.TimeSeries(range(0,4),range(1,5))
 
 def test_len():
@@ -42,6 +42,16 @@ def test_mean():
 
 def test_median():
     assert testSeries.median() == 2.5
+
+def test_itertimes():
+    assert isinstance(testSeries.itertimes(),collections.Iterable) == True
+
+def test_itervalue():
+    assert isinstance(testSeries.itervalues(),collections.Iterable) == True
+
+def test_iteritems():
+    assert isinstance(testSeries.iteritems(),collections.Iterable) == True
+
 
 def test_interpolation():
     a = TS.TimeSeries([0,5,10], [1,2,3])
