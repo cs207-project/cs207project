@@ -4,7 +4,12 @@ import TimeSeries as TS
 from lazy import *
 import collections
 testSeries = TS.TimeSeries(range(0,4),range(1,5))
-
+testSeries2 = TS.TimeSeries(range(0,4),[10,20,30,40,50])
+a = 100
+# infix addition, subtraction, equality and multiplication. 
+# Here you must check that the lengths are equal and that the time domains are the same 
+# for the case of the operations on a TimeSeries (the latter implies the former). 
+# Return a ValueError in case this fails:
 def test_len():
     assert len(testSeries) == 4
 
@@ -51,7 +56,6 @@ def test_itervalue():
     vi=testSeries.itervalues()
     assert next(vi)==1
 
-
 def test_iteritems():
     iti=testSeries.iteritems()
     assert next(iti)==(0,1)
@@ -64,7 +68,19 @@ def test_interpolation():
     assert a.interpolate(b.times()) == TS.TimeSeries([2.5,7.5], [1.5, 2.5])
     # Boundary conditions
     assert a.interpolate([-100,100]) == TS.TimeSeries([-100,100],[1,3])
-
+def test_add():
+    a = TS.TimeSeries([0,5,10], [1,2,3])
+    b = TS.TimeSeries([0,5,10], [10,20,30])
+    c = 100
+    d = TS.TimeSeries([0,1,2], [1,2,3])
+    assert a+b == TS.TimeSeries([0,5,10],[11,22,33])
+    assert a+c == TS.TimeSeries([0,5,10],[101,102,103])
+    with raises(ValueError):
+        a+d
+    assert a+b == b+a
+    assert c+a == a+c
+    with raises(ValueError):
+        d+a
 @lazy
 def check_length(a,b):
     return len(a)==len(b)
