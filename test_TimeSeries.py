@@ -115,6 +115,15 @@ def test_mul():
     with raises(ValueError):
         d*a
 
+def test_neg():
+    a = TS.TimeSeries([0,5,10], [1,2,3])
+    b = TS.TimeSeries([0,5,10], [10,20,30])
+    assert -a == TS.TimeSeries([0,5,10],[-1,-2,-3])
+
+def test_pos():
+    a = TS.TimeSeries([0,5,10], [-1,-2,3])
+    assert +a == a
+
 @lazy
 def check_length(a,b):
     return len(a)==len(b)
