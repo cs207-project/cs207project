@@ -186,13 +186,17 @@ DESCRIPTION
         pass
 
     def __mul__(self, rhs):
-        pass
+        lfs_values = self.values()
+        rhs_values = rhs.values()
+        n = len(lfs_values)
+        result = np.zeros(n)
+        for i in range(n):
+            result[i] = lfs_values[i] * rhs_values[i]
+
+        return result
 
     def __rmul__(self, other):
         return self * other
-
-    def __eq__(self, rhs):
-        pass
 
     def __abs__(self):
         pass
