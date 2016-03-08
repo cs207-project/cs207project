@@ -156,6 +156,9 @@ DESCRIPTION
                         new_values.append(left_value + (right_value - left_value)/(right_time - left_time)*(time - left_time))
                         break
         return TimeSeries(times, new_values)
+        
+    def checkTime(self,rhs):
+        return np.array_equal(self._times, rhs._times)
 
     def __add__(self, rhs):
         try:
@@ -176,8 +179,6 @@ DESCRIPTION
             raise NotImplemented
 
 
-    def __radd__(self,other):
-        return self + other
     def __radd__(self, other):
         return self + other
 
