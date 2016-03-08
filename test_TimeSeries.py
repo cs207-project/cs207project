@@ -81,6 +81,16 @@ def test_add():
     assert c+a == a+c
     with raises(ValueError):
         d+a
+        
+def test_sub():
+    a = TS.TimeSeries([0,5,10], [1,2,3])
+    b = TS.TimeSeries([0,5,10], [10,20,30])
+    c = 100
+    d = TS.TimeSeries([0,1,2], [1,2,3])
+    assert b-a == TS.TimeSeries([0,5,10],[9,18,27])
+    assert a-c == TS.TimeSeries([0,5,10],[-99,-98,-97])
+    with raises(ValueError):
+        a-d
 @lazy
 def check_length(a,b):
     return len(a)==len(b)

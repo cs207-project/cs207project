@@ -183,7 +183,17 @@ DESCRIPTION
         return self + other
 
     def __sub__(self, rhs):
-        pass 
+
+        try:
+            if isinstance(rhs, numbers.Real):
+                return TimeSeries(self._times, self._values - rhs)
+            elif self.checkTime(rhs) == True:
+                return TimeSeries(self._times, self._values - rhs._values )
+            else:
+                
+                raise ValueError(str(self)+' and '+str(rhs)+' must have the same time points')
+        except TypeError:
+            raise NotImplemented
 
     def __mul__(self, rhs):
         lfs_values = self.values()
