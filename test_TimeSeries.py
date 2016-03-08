@@ -91,6 +91,22 @@ def test_sub():
     assert a-c == TS.TimeSeries([0,5,10],[-99,-98,-97])
     with raises(ValueError):
         a-d
+
+
+def test_mul():
+    a = TS.TimeSeries([0,5,10], [1,2,3])
+    b = TS.TimeSeries([0,5,10], [10,20,30])
+    c = 100
+    d = TS.TimeSeries([0,1,2], [1,2,3])
+    assert a*b == TS.TimeSeries([0,5,10],[10,40,90])
+    assert a*c == TS.TimeSeries([0,5,10],[100,200,300])
+    with raises(ValueError):
+        a*d
+    assert a*b == b*a
+    assert c*a == a*c
+    with raises(ValueError):
+        d*a
+
 @lazy
 def check_length(a,b):
     return len(a)==len(b)
