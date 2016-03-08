@@ -165,7 +165,7 @@ DESCRIPTION
     def __sub__(self, rhs):
         pass
 
-    def __mul__(self, rhs);
+    def __mul__(self, rhs):
         pass
 
     def __rmul__(self, other):
