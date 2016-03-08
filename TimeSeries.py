@@ -190,7 +190,7 @@ DESCRIPTION
     def __rmul__(self, other):
         return self * other
 
-    def __eq__(self, rhs);
+    def __eq__(self, rhs):
         pass
 
     def __abs__(self):
