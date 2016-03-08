@@ -157,8 +157,26 @@ DESCRIPTION
         return TimeSeries(times, new_values)
 
     def __add__(self, rhs):
-        pass
+        try:
+            
+            if isinstance(rhs, numbers.Real):
 
+                return TimeSeries(self._times, rhs + self._values)
+
+            elif self.checkTime(rhs) == True:
+
+                return TimeSeries(self._times, rhs._values + self._values)
+            
+            else:
+                
+                raise ValueError("Times must match. ")
+        except TypeError:
+            
+            raise NotImplemented
+
+
+    def __radd__(self,other):
+        return self + other
     def __radd__(self, other):
         return self + other
 
