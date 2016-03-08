@@ -155,3 +155,27 @@ DESCRIPTION
                         new_values.append(left_value + (right_value - left_value)/(right_time - left_time)*(time - left_time))
                         break
         return TimeSeries(times, new_values)
+
+    def __add__(self, other):
+        pass
+
+    def __sub__(self, other):
+        pass
+
+    def __mul__(self, other);
+        pass
+
+    def __eq__(self, other);
+        pass
+
+    def __abs__(self):
+        pass
+
+    def __bool__(self):
+        pass
+
+    def __neg__(self):
+        pass
+
+    def __pos__(self):
+        pass
