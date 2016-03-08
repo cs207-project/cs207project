@@ -196,14 +196,19 @@ DESCRIPTION
             raise NotImplemented
 
     def __mul__(self, rhs):
-        lfs_values = self.values()
-        rhs_values = rhs.values()
-        n = len(lfs_values)
-        result = np.zeros(n)
-        for i in range(n):
-            result[i] = lfs_values[i] * rhs_values[i]
+        try: 
+            if isinstance(rhs, numbers.Real):
+                return TimeSeries(self._times, self._values * rhs)
+            
+            elif self.checkTime(rhs)==True: # same length
+                return TimeSeries(self._times, self._values * rhs._values)
+                
+            else:
+                raise ValueError(str(self)+' and '+str(rhs)+' must have the same time points')
+        
+        except TypeError:
+            raise NotImplemented
 
-        return result
 
     def __rmul__(self, other):
         return self * other
