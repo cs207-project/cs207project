@@ -220,9 +220,7 @@ DESCRIPTION
         pass
 
     def __neg__(self):
-        a = TS.TimeSeries([0,5,10], [1,2,3])
-        b = TS.TimeSeries([0,5,10], [10,20,30])
-        assert -a == TS.TimeSeries([0,5,10],[-1,-2,-3])
+        return TimeSeries(self._times,-1*self._values)
+        
     def __pos__(self):
-        a = TS.TimeSeries([0,5,10], [-1,-2,3])
-        assert +a == a
+        return (self)
