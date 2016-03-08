@@ -1,5 +1,6 @@
 import numpy as np
 from lazy import *
+import numbers
 
 class TimeSeries():
     '''
@@ -169,7 +170,7 @@ DESCRIPTION
             
             else:
                 
-                raise ValueError("Times must match. ")
+                raise ValueError(str(self)+' and '+str(rhs)+' must have the same time points')
         except TypeError:
             
             raise NotImplemented
