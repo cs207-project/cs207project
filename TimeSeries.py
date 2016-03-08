@@ -156,16 +156,22 @@ DESCRIPTION
                         break
         return TimeSeries(times, new_values)
 
-    def __add__(self, other):
+    def __add__(self, rhs):
         pass
 
-    def __sub__(self, other):
+    def __radd__(self, other):
+        return self + other
+
+    def __sub__(self, rhs):
         pass
 
-    def __mul__(self, other);
+    def __mul__(self, rhs);
         pass
 
-    def __eq__(self, other);
+    def __rmul__(self, other):
+        return self * other
+
+    def __eq__(self, rhs);
         pass
 
     def __abs__(self):
