@@ -186,14 +186,19 @@ DESCRIPTION
         pass 
 
     def __mul__(self, rhs):
-        if isinstance(rhs, numbers.Real):
-            return TimeSeries(self._times, self._values * rhs)
-        
-        elif self.checkTime(rhs)==True: # same length
-            return TimeSeries(self._times, self._values * rhs._values)
+        try: 
+            if isinstance(rhs, numbers.Real):
+                return TimeSeries(self._times, self._values * rhs)
             
-        else:
-            raise ValueError(str(self)+' and '+str(rhs)+' must have the same time points')
+            elif self.checkTime(rhs)==True: # same length
+                return TimeSeries(self._times, self._values * rhs._values)
+                
+            else:
+                raise ValueError(str(self)+' and '+str(rhs)+' must have the same time points')
+        
+        except TypeError:
+            raise NotImplemented
+
 
     def __rmul__(self, other):
         return self * other
