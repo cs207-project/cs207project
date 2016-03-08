@@ -214,7 +214,7 @@ DESCRIPTION
         return self * other
 
     def __abs__(self):
-        return np.sqrt(np.sum(np.power(self._values,2)))
+        return np.sqrt(np.sum(x * x for x in self._values))
 
     def __bool__(self):
         return bool(abs(self))

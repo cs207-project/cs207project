@@ -3,13 +3,10 @@ import numpy as np
 import TimeSeries as TS
 from lazy import *
 import collections
+
 testSeries = TS.TimeSeries(range(0,4),range(1,5))
 testSeries2 = TS.TimeSeries(range(0,4),[10,20,30,40,50])
-a = 100
-# infix addition, subtraction, equality and multiplication. 
-# Here you must check that the lengths are equal and that the time domains are the same 
-# for the case of the operations on a TimeSeries (the latter implies the former). 
-# Return a ValueError in case this fails:
+
 def test_len():
     assert len(testSeries) == 4
 
@@ -68,6 +65,7 @@ def test_interpolation():
     assert a.interpolate(b.times()) == TS.TimeSeries([2.5,7.5], [1.5, 2.5])
     # Boundary conditions
     assert a.interpolate([-100,100]) == TS.TimeSeries([-100,100],[1,3])
+    
 def test_add():
     a = TS.TimeSeries([0,5,10], [1,2,3])
     b = TS.TimeSeries([0,5,10], [10,20,30])
@@ -114,6 +112,10 @@ def test_mul():
     assert c*a == a*c
     with raises(ValueError):
         d*a
+
+def test_abs():
+    a = TS.TimeSeries([0,5], [3,4])
+    assert abs(timeseries)==5.
 
 def test_neg():
     a = TS.TimeSeries([0,5,10], [1,2,3])
