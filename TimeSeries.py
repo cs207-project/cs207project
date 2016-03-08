@@ -183,7 +183,7 @@ DESCRIPTION
         return self + other
 
     def __sub__(self, rhs):
-        pass
+        pass 
 
     def __mul__(self, rhs):
         lfs_values = self.values()
