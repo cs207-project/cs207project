@@ -115,7 +115,7 @@ def test_mul():
 
 def test_abs():
     a = TS.TimeSeries([0,5], [3,4])
-    assert abs(timeseries)==5.
+    assert abs(a)==5.
 
 def test_neg():
     a = TS.TimeSeries([0,5,10], [1,2,3])

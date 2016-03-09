@@ -117,6 +117,10 @@ def test_abs():
     a = TS.TimeSeries([0,5], [3,4])
     assert abs(a)==5.
 
+def test_bool():
+    a = TS.TimesSeries([0],[0])
+    assert abs(a)==False
+
 def test_neg():
     a = TS.TimeSeries([0,5,10], [1,2,3])
     b = TS.TimeSeries([0,5,10], [10,20,30])
