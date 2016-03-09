@@ -118,7 +118,7 @@ def test_abs():
     assert abs(a)==5.
 
 def test_bool():
-    a = TS.TimesSeries([0],[0])
+    a = TS.TimeSeries([0],[0])
     assert abs(a)==False
 
 def test_neg():
