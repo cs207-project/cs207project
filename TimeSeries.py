@@ -30,8 +30,6 @@ DESCRIPTION
 
     The docstring examples assume that `numpy` has been imported as `np`::
 
-
-
      |  Methods inherited from builtins.RuntimeWarning:
      |
      |  __init__(self, *args, **kwargs)
@@ -54,6 +52,22 @@ DESCRIPTION
      |      Return len(self.TimeSeries_)
      '''
     def __init__(self, times, values):
+        """
+
+        This initialise the Time Series Class by passing into the "times" and "values" lists
+
+        Note
+        ----
+        The times and values must be of the same in length, and they can both be empty.
+
+        Parameters
+        ----------
+        times : list of floats
+            sequence of time values represented as float
+        values : list of floats
+            sequence of values corresponding to each time value
+
+        """
         if (iter(times) and iter(values)):
             # reorder according to Time step
             idx = np.argsort(times)
@@ -67,6 +81,7 @@ DESCRIPTION
     
     @property
     @lazy
+
     def lazy(self):
         """Class method used for lazy-evaluation.
         By @lazy decorator, the lazy function returns
@@ -243,11 +258,38 @@ DESCRIPTION
         return np.mean(self._values)
     
     def median(self):
+        '''
+        Getting the median of self.values
+
+        Returns
+        -------
+        float
+            the median of self.values
+
+        Raises
+        ------
+        ValueError
+            If self.values is empty
+        '''
         if(len(self._values) == 0):
             raise ValueError("cant calculate median of length 0 list")
         return np.median(self._values)
     
     def interpolate(self, times):
+        '''
+        Filling the TimeSeries class with a given list of times using linear interpolation
+
+        Parameters
+        ----------
+        times: list of float
+            a list of times to be added to self
+
+        Returns
+        -------
+        TimeSeries
+             New TimeSeries instance with parameter 'times' and interpolated 'values' added
+
+        '''
         new_values = []
         for time in times:
             if time > self._times[-1]: # over the rightest boundary
@@ -269,9 +311,44 @@ DESCRIPTION
         return TimeSeries(times, new_values)
         
     def checkTime(self,rhs):
+        '''
+        Tool function checking wether the given parameter 'rhs' and self have the same time points
+
+        Parameters
+        ----------
+        rhs: TimeSeries
+            TimeSeries instance to be compared with self on 'times' list
+
+        Returns
+        -------
+        bool
+             True if rhs and self have the same 'times' list, False otherwise
+
+        '''
         return np.array_equal(self._times, rhs._times)
 
     def __add__(self, rhs):
+        '''
+        Elementwise add operation
+
+        Parameters
+        ----------
+        rhs: TimeSeries
+            TimeSeries instance with the same 'times' points for TimeSeries addition, applied only on 'values' list
+
+        Returns
+        -------
+        TimeSeries
+             result of TimeSeries Class added by parameter 'rhs'
+
+        Raises
+        ------
+        TypeError
+            If values in rhs are not real number
+        ValueError
+            If time points in self and rhs do not match
+
+        '''
         try:
             
             if isinstance(rhs, numbers.Real):
@@ -291,9 +368,44 @@ DESCRIPTION
 
 
     def __radd__(self, other):
+        '''
+        other + self delegates to __add__
+
+        Parameters
+        ----------
+        other : TimeSeries
+            TimeSeries instance for TimeSeries addition
+
+        Returns
+        -------
+        TimeSeries
+             result of self added by parameter 'other', 'values' of which are the sum of two 'values' lists
+        '''
         return self + other
 
     def __sub__(self, rhs):
+
+        '''
+        Elementwise subtract operation
+
+        Parameters
+        ----------
+        rhs: TimeSeries
+            TimeSeries instance with the same 'times' points for TimeSeries subtraction, applied only on 'values' list
+
+        Returns
+        -------
+        TimeSeries
+             result of TimeSeries Class subtracted by parameter 'rhs'
+
+        Raises
+        ------
+        TypeError
+            If values in rhs are not real number
+        ValueError
+            If time points in self and rhs do not match
+
+        '''
 
         try:
             if isinstance(rhs, numbers.Real):
@@ -307,6 +419,26 @@ DESCRIPTION
             raise NotImplemented
 
     def __mul__(self, rhs):
+        '''
+        Elementwise multiply operations
+
+        Parameters
+        ----------
+        rhs: TimeSeries
+            TimeSeries instance with the same 'times' points for multiplication, applied only on 'values' list
+
+        Returns
+        -------
+        TimeSeries
+             result of TimeSeries Class multiplied by parameter 'rhs'
+
+        Raises
+        ------
+        TypeError
+            If values in rhs are not real number
+        ValueError
+            If time points in self and rhs do not match
+        '''
         try: 
             if isinstance(rhs, numbers.Real):
                 return TimeSeries(self._times, self._values * rhs)
@@ -322,16 +454,54 @@ DESCRIPTION
 
 
     def __rmul__(self, other):
+        '''
+        other * self delegates to __mul__
+        Parameters
+        ----------
+        other : TimeSeries
+            TimeSeries instance for TimeSeries multiplication
+
+        Returns
+        -------
+        TimeSeries
+             result of TimeSeries Class multiplied by parameter 'other'
+        '''
+
         return self * other
 
     def __abs__(self):
+        '''
+        Returns
+        -------
+        float
+            The square root of the sum of all squared values in TimeSeries values list
+        '''
+
         return np.sqrt(np.sum(np.power(self._values,2)))
 
     def __bool__(self):
+        '''
+        Returns
+        -------
+        bool
+            True if the abs value of TimeSeries is greater than zero, False otherwise
+        '''
         return bool(abs(self))
 
     def __neg__(self):
+        '''
+        Returns
+        -------
+        TimeSeries
+            the TimeSeries instance with the same 'times' list but negative (opposite sign) 'values' list
+        '''
         return TimeSeries(self._times,-1*self._values)
         
     def __pos__(self):
+        '''
+        Returns
+        -------
+        TimeSeries
+            the TimeSeries instance itself
+        '''
         return (self)
