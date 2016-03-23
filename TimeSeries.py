@@ -272,6 +272,11 @@ DESCRIPTION
         -------
         float
             the mean of self.values
+
+        Raises
+        ------
+        ValueError
+            If self.values is empty
         """
         if(len(self._values) == 0):
             raise ValueError("cant calculate mean of length 0 list")
@@ -294,6 +299,24 @@ DESCRIPTION
         if(len(self._values) == 0):
             raise ValueError("cant calculate median of length 0 list")
         return np.median(self._values)
+
+    def std(self):
+        '''
+        Returns the standard-deviation of self.values
+
+        Returns
+        -------
+        float
+            the standard deviation of self.values
+
+        Raises
+        ------
+        ValueError
+            If self.values is empty
+        '''
+        if(len(self._values) == 0):
+            raise ValueError("cant calculate median of length 0 list")
+        return np.std(self._values)
     
     def interpolate(self, times):
         '''

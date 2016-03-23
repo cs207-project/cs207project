@@ -39,11 +39,18 @@ def test_median_empty():
     with raises(ValueError):
          TS.TimeSeries([],[]).median()
 
+def test_std_empty():
+    with raises(ValueError):
+        TS.TimeSeries([],[]).std()
+
 def test_mean():
     assert testSeries.mean() == 2.5
 
 def test_median():
     assert testSeries.median() == 2.5
+
+def test_std():
+    assert testSeries.std() == 1.1180339887498949
 
 def test_itertimes():
     ti=testSeries.itertimes()
