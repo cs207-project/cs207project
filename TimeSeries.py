@@ -13,37 +13,37 @@ NAME
 DESCRIPTION
     TimeSeries
     =====
-    
+
     Provides
       1. An sequence or any iterable objects
-    
+
     How to use the documentation
     ----------------------------
     Documentation is available in two forms: docstrings provided
     with the code, and a loose standing reference guide, available from
     `the TimeSeries homepage <https://github.com/cs207-project>`_.
-    
+
     We recommend exploring the docstrings using
     `IPython <http://ipython.scipy.org>`_, an advanced Python shell with
     TAB-completion and introspection capabilities.  See below for further
     instructions.
-    
-    The docstring examples assume that `numpy` has been imported as `np`::  
-      
-    
-    
+
+    The docstring examples assume that `numpy` has been imported as `np`::
+
+
+
      |  Methods inherited from builtins.RuntimeWarning:
-     |  
+     |
      |  __init__(self, *args, **kwargs)
      |      Initialize self.  See help(type(self)) for accurate signature.
      |      Stors a TimeSeries in self.TimeSeries_
-     |    
+     |
      |  __repr__(self, /)
      |      Return a printable sequence shown in python list format containing all values in [self].
-     |  
+     |
      |  __str__(self, /)
      |      Return a printable abbreviated sequence of maximum first 100 entrees.
-     |  
+     |
      |  __getitem__(self, index)
      |      Return self[index]
      |
@@ -68,29 +68,91 @@ DESCRIPTION
     @property
     @lazy
     def lazy(self):
+        """Class method used for lazy-evaluation.
+        By @lazy decorator, the lazy function returns
+        lazyOperation() instance that is used later
+        when actual evaluation happens.
+
+        Returns
+        -------
+        instance
+            lazyOperation()
+        """
         return self
 
     def itervalues(self):
+        """Class method that yields values of the Timeseries one by one.
+
+        Yields
+        -------
+        flot
+            value
+        """
         for v in self._values:
             yield v
 
     def itertimes(self):
+        """Class method that yields time-values of the Timeseries one by one.
+
+        Yields
+        -------
+        flot
+            time
+        """
         for t in self._times:
             yield t
 
     def iteritems(self):
+        """Class method that yields each pair of (value, time) of the Timeseries one by one.
+
+        Yields
+        -------
+        tuple
+            (value, time)
+        """
         for t,v in zip(self._times,self._values):
             yield (t,v)
             
     def __len__(self):
+        """Returns the length of this TimeSeries instance.
+
+        Returns
+        -------
+        int
+            length
+        """
         return len(self._TimeSeries[0])
     
     def __contains__(self, time):
+        """Check if the given time-value is
+        in the times-list of our TimeSeries instance.
+
+        Parameters
+        ----------
+        time : float
+
+        Returns
+        -------
+        bool
+            True if 'time' is in, False otherwise.
+        """
         index = np.where(self._TimeSeries[0]==time)
         return index[0].size>0
             
     
     def __getitem__(self,time):
+        """Return the 'value' in the position corresponding to
+         the given 'time' value.
+
+        Parameters
+        ----------
+        time : float
+
+        Returns
+        -------
+        float
+            value
+        """
         if (time in self):
             index = np.where(self._TimeSeries[0]==time)
             return self._TimeSeries[1][index]
@@ -98,6 +160,15 @@ DESCRIPTION
             print ("no time point at t={0}".format(time))
 
     def __setitem__(self,time,value):
+        """Replace a value in the position corresponding to the given 'time' value
+        by the given 'value'.
+
+        Parameters
+        ----------
+        time : float
+        value : float
+
+        """
         if (time in self):
             index = np.where(self._TimeSeries[0]==time)
             self._TimeSeries[1][index]=value
@@ -105,12 +176,27 @@ DESCRIPTION
             print ("no time point at t={0}".format(time))
             
     def __iter__(self):
+        """Returns a generator object that iterates value-list of the TimeSeries.
+
+        Returns
+        -------
+        iter()
+        """
         return iter(self._TimeSeries[1])
     
     def __repr__(self):
+        """Representation method.
+        Refer to __str__ method.
+        """
         return "%r"%(self._TimeSeries)
     
     def __str__(self):
+        """Representation method.
+
+        Returns
+        -------
+        ex) TimeSeries([1, 2, ...])
+        """
         className = type(self).__name__
         if len(self)>100:
             return "%s" %('['+(str(self._values[:99]))[1:-1]+'...'+']')
@@ -118,12 +204,37 @@ DESCRIPTION
             return "%s" %(self._TimeSeries)
         
     def __eq__(self, other):
+        """Check if the 'other' is the same instance with this TimeSeries instacne.
+
+        Parameters
+        ----------
+        other : TimeSeries()
+
+        Returns
+        -------
+        bool
+            True if they are equal, False otherwise
+        """
         return np.array_equal(self._TimeSeries, other._TimeSeries)
         
     def values(self):
+        """Returns the 'value-list' attribute of this TimeSeries
+
+        Returns
+        -------
+        list
+            value_list
+        """
         return self._values
     
     def times(self):
+        """Returns the 'time-list' attribute of this TimeSeries
+
+        Returns
+        -------
+        list
+            time_list
+        """
         return self._times
     
     def mean(self):        
