@@ -53,7 +53,6 @@ DESCRIPTION
      '''
     def __init__(self, times, values):
         """
-
         This initialise the Time Series Class by passing into the "times" and "values" lists
 
         Note
@@ -81,9 +80,9 @@ DESCRIPTION
     
     @property
     @lazy
-
     def lazy(self):
-        """Class method used for lazy-evaluation.
+        """
+        Class method used for lazy-evaluation.
         By @lazy decorator, the lazy function returns
         lazyOperation() instance that is used later
         when actual evaluation happens.
@@ -96,7 +95,8 @@ DESCRIPTION
         return self
 
     def itervalues(self):
-        """Class method that yields values of the Timeseries one by one.
+        """
+        Class method that yields values of the Timeseries one by one.
 
         Yields
         -------
@@ -107,7 +107,8 @@ DESCRIPTION
             yield v
 
     def itertimes(self):
-        """Class method that yields time-values of the Timeseries one by one.
+        """
+        Class method that yields time-values of the Timeseries one by one.
 
         Yields
         -------
@@ -118,7 +119,8 @@ DESCRIPTION
             yield t
 
     def iteritems(self):
-        """Class method that yields each pair of (value, time) of the Timeseries one by one.
+        """
+        Class method that yields each pair of (value, time) of the Timeseries one by one.
 
         Yields
         -------
@@ -129,7 +131,8 @@ DESCRIPTION
             yield (t,v)
             
     def __len__(self):
-        """Returns the length of this TimeSeries instance.
+        """
+        Returns the length of this TimeSeries instance.
 
         Returns
         -------
@@ -139,7 +142,8 @@ DESCRIPTION
         return len(self._TimeSeries[0])
     
     def __contains__(self, time):
-        """Check if the given time-value is
+        """
+        Check if the given time-value is
         in the times-list of our TimeSeries instance.
 
         Parameters
@@ -156,8 +160,9 @@ DESCRIPTION
             
     
     def __getitem__(self,time):
-        """Return the 'value' in the position corresponding to
-         the given 'time' value.
+        """
+        Return the 'value' in the position corresponding to
+        the given 'time' value.
 
         Parameters
         ----------
@@ -175,7 +180,8 @@ DESCRIPTION
             print ("no time point at t={0}".format(time))
 
     def __setitem__(self,time,value):
-        """Replace a value in the position corresponding to the given 'time' value
+        """
+        Replace a value in the position corresponding to the given 'time' value
         by the given 'value'.
 
         Parameters
@@ -191,7 +197,8 @@ DESCRIPTION
             print ("no time point at t={0}".format(time))
             
     def __iter__(self):
-        """Returns a generator object that iterates value-list of the TimeSeries.
+        """
+        Returns a generator object that iterates value-list of the TimeSeries.
 
         Returns
         -------
@@ -200,13 +207,15 @@ DESCRIPTION
         return iter(self._TimeSeries[1])
     
     def __repr__(self):
-        """Representation method.
+        """
+        Representation method.
         Refer to __str__ method.
         """
         return "%r"%(self._TimeSeries)
     
     def __str__(self):
-        """Representation method.
+        """
+        Representation method.
 
         Returns
         -------
@@ -219,7 +228,8 @@ DESCRIPTION
             return "%s" %(self._TimeSeries)
         
     def __eq__(self, other):
-        """Check if the 'other' is the same instance with this TimeSeries instacne.
+        """
+        Check if the 'other' is the same instance with this TimeSeries instacne.
 
         Parameters
         ----------
@@ -233,7 +243,8 @@ DESCRIPTION
         return np.array_equal(self._TimeSeries, other._TimeSeries)
         
     def values(self):
-        """Returns the 'value-list' attribute of this TimeSeries
+        """
+        Returns the 'value-list' attribute of this TimeSeries
 
         Returns
         -------
@@ -243,7 +254,8 @@ DESCRIPTION
         return self._values
     
     def times(self):
-        """Returns the 'time-list' attribute of this TimeSeries
+        """
+        Returns the 'time-list' attribute of this TimeSeries
 
         Returns
         -------
@@ -252,7 +264,15 @@ DESCRIPTION
         """
         return self._times
     
-    def mean(self):        
+    def mean(self):
+        """
+        Returns the mean value of self.values
+
+        Returns
+        -------
+        float
+            the mean of self.values
+        """
         if(len(self._values) == 0):
             raise ValueError("cant calculate mean of length 0 list")
         return np.mean(self._values)
